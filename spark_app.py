@@ -1,7 +1,7 @@
 import os,json
+from pyspark.sql.streaming.query import StreamingQuery
 from pyspark.sql import SparkSession
 from pyspark.sql.functions import *
-from pyspark.conf import SparkConf
 from pyspark.sql.types import *
 from delta import *
 from dotenv import load_dotenv
@@ -40,7 +40,7 @@ def create_session() -> SparkSession:
     session.sparkContext.setLogLevel(loglevel)
     return session
 
-def kafka_consumer(session):
+def kafka_consumer(session: SparkSession) -> DataFrame:
         inputDF = session.readStream \
             .format("kafka") \
             .option("kafka.bootstrap.servers", kafka_bootstrap_server) \
@@ -50,7 +50,7 @@ def kafka_consumer(session):
             .selectExpr("CAST(value AS STRING)", "CAST(partition AS INT )", "CAST(offset AS LONG)")
         return inputDF
 
-def process(df):
+def process(df: DataFrame) -> DataFrame:
     schema = StructType([
                 StructField("device_id", StringType(), True),
                 StructField("temperature", IntegerType(), True),
@@ -62,7 +62,7 @@ def process(df):
     df = df.withColumn("RECORD_DATE", from_unixtime(col("time")))
     return df
 
-def sink(df: DataFrame):
+def sink(df: DataFrame) -> StreamingQuery:
     if sink_type == 'console':
         query = df.writeStream \
             .format("console") \
@@ -77,6 +77,5 @@ def sink(df: DataFrame):
             .outputMode(output_mode) \
             .option("checkpointLocation", checkpointLocation) \
             .start(sink_location)
-
 
     return query

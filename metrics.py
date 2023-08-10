@@ -1,6 +1,6 @@
 from datetime import datetime
 
-def extract_metrics(progress: dict):
+def extract_metrics(progress: dict) -> dict:
     stream_name = progress["name"]
     data = ""
 

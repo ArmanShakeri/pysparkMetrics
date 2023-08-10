@@ -22,7 +22,7 @@ async def get_producer():
 async def send_one(event,producer,topic):
     await producer.send(topic , event)
 
-async def store_data_point(device_id):
+async def store_data_point(device_id: str):
     producer = await get_producer()
     while True:
         data = dict(

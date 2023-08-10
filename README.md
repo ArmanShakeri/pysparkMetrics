@@ -18,6 +18,7 @@ If Faker is enabled, in the background, fake data is generated at a defined rate
 The extraction of metrics is implemented in metrics.py, and it can be extended for other sources.
 <h2>Test</h2>
 I used the following Docker images to test the code:
+
 - bitnami/kafka
 - minio/minio
 - prom/prometheus

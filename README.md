@@ -16,3 +16,11 @@ If Faker is enabled, in the background, fake data is generated at a defined rate
 
 <h2>Metrics</h2>
 The extraction of metrics is implemented in metrics.py, and it can be extended for other sources.
+<h2>Test</h2>
+I used the following Docker images to test the code:
+- bitnami/kafka
+- minio/minio
+- prom/prometheus
+- prom/pushgateway
+- grafana/grafana
+my spark version was 3.3.2 and delta 2.12

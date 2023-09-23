@@ -25,4 +25,4 @@ I used the following Docker images to test the code:
 - prom/pushgateway
 - grafana/grafana
 
-my spark version was 3.3.2 and delta 2.12
+my spark version was 3.4.1 and delta 2.4

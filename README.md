@@ -26,3 +26,4 @@ I used the following Docker images to test the code:
 - grafana/grafana
 
 my spark version was 3.4.1 and delta 2.4
+StreamingQueryListener is a new class in spark 3.4.0: https://spark.apache.org/docs/latest/api/python/reference/pyspark.ss/api/pyspark.sql.streaming.StreamingQueryListener.html
